@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'io.pivotal.education'
-version = 'v0'
+version = 'v1'
 sourceCompatibility = '11'
 
 repositories {
