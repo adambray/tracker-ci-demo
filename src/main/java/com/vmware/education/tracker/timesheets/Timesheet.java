@@ -1,4 +1,4 @@
-package com.vmware.education.tracker;
+package com.vmware.education.tracker.timesheets;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

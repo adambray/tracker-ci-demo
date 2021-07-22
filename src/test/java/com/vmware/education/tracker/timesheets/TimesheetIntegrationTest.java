@@ -1,5 +1,6 @@
-package com.vmware.education.tracker;
+package com.vmware.education.tracker.timesheets;
 
+import com.vmware.education.tracker.timesheets.Timesheet;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ import java.time.LocalDate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class TrackerApplicationTests {
+class TimesheetIntegrationTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
-    public void testCreateTimesheet() {
+    void testCreateTimesheet() {
         Timesheet timesheetToCreate =
                 new Timesheet(2L,
                         3L,
@@ -42,7 +43,7 @@ public class TrackerApplicationTests {
     }
 
     @Test
-    public void testFindTimesheet() {
+    void testFindTimesheet() {
         Timesheet timesheetCreated = createTimesheet(
                 new Timesheet(
                         22L,
@@ -61,7 +62,7 @@ public class TrackerApplicationTests {
     }
 
     @Test
-    public void testFindTimesheet_notFound() {
+    void testFindTimesheet_notFound() {
         ResponseEntity<Timesheet> timesheetResponseEntity =
                 restTemplate.getForEntity("/timesheets/0",
                         Timesheet.class);
@@ -70,7 +71,7 @@ public class TrackerApplicationTests {
     }
 
     @Test
-    public void testUpdateTimesheet() {
+    void testUpdateTimesheet() {
         Timesheet timesheetCreated = createTimesheet(
                 new Timesheet(
                         22L,
@@ -115,7 +116,7 @@ public class TrackerApplicationTests {
     }
 
     @Test
-    public void testUpdateTimesheet_notFound() {
+    void testUpdateTimesheet_notFound() {
         Timesheet timesheetToUpdate =
                 new Timesheet(
                         22L,
@@ -135,7 +136,7 @@ public class TrackerApplicationTests {
     }
 
     @Test
-    public void testDeleteTimesheet() {
+    void testDeleteTimesheet() {
         Timesheet timesheetCreated = createTimesheet(
                 new Timesheet(
                         22L,

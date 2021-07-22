@@ -1,5 +1,8 @@
-package com.vmware.education.tracker;
+package com.vmware.education.tracker.timesheets;
 
+import com.vmware.education.tracker.timesheets.Timesheet;
+import com.vmware.education.tracker.timesheets.TimesheetController;
+import com.vmware.education.tracker.timesheets.TimesheetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -11,18 +14,18 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-public class TimesheetControllerTests {
+class TimesheetControllerTests {
     private TimesheetRepository repository;
     private TimesheetController controller;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         repository = mock(TimesheetRepository.class);
         controller = new TimesheetController(repository);
     }
 
     @Test
-    public void testCreateTimesheet() {
+    void testCreateTimesheet() {
         Timesheet timesheetToCreate =
                 new Timesheet(2L,
                         3L,
@@ -51,7 +54,7 @@ public class TimesheetControllerTests {
     }
 
     @Test
-    public void testFindTimesheet() {
+    void testFindTimesheet() {
         Timesheet timesheetFound =
                 new Timesheet(1L,
                         2L,
@@ -74,7 +77,7 @@ public class TimesheetControllerTests {
     }
 
     @Test
-    public void testFindTimesheet_notFound() {
+    void testFindTimesheet_notFound() {
         doReturn(Optional.empty())
                 .when(repository)
                 .findById(1L);
@@ -89,7 +92,7 @@ public class TimesheetControllerTests {
     }
 
     @Test
-    public void testUpdateTimesheet() {
+    void testUpdateTimesheet() {
         Timesheet timesheetToUpdate =
                 new Timesheet(2L,
                         3L,
@@ -139,7 +142,7 @@ public class TimesheetControllerTests {
     }
 
     @Test
-    public void testUpdateTimesheet_notFound() {
+    void testUpdateTimesheet_notFound() {
         Timesheet timesheetToSave =
                 new Timesheet(
                         2L,
@@ -164,7 +167,7 @@ public class TimesheetControllerTests {
 
 
     @Test
-    public void testDeleteTimesheet() {
+    void testDeleteTimesheet() {
          ResponseEntity<Void> timesheetResponseEntity =
                 controller.delete(1L);
 
